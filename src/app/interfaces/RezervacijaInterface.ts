@@ -1,5 +1,4 @@
 export default interface IRezervacija {
-
     id: number;
     voziloId: number;
     korisnikId: number;
@@ -8,6 +7,4 @@ export default interface IRezervacija {
     status: "rezervisana" | "otkazana" | "zavrsena";
     lokacija: string;
     cena: number;
-
- 
 }
