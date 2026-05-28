@@ -4,6 +4,7 @@ import { useState, useMemo, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useReservation } from "@/context/ReservationContext";
 import useLocalStorage from "@/hooks/useLocalStorage";
+import { useCurrency } from "@/context/CurrencyContext";
 import vehicles from "@/models/data";
 import IRezervacija from "@/interfaces/RezervacijaInterface";
 
@@ -45,6 +46,7 @@ export default function RezervacijePage() {
   const router = useRouter();
   const [userId] = useLocalStorage<number | null>("auth_userId", null);
   const { reservations, cancel } = useReservation();
+  const { format } = useCurrency();
   const [tab, setTab] = useState<TabFilter>("sve");
   const [mounted, setMounted] = useState(false);
 
@@ -140,7 +142,7 @@ export default function RezervacijePage() {
                   <span className="text-gray-400 text-sm">{fmtDate(r.datumPocetka)}</span>
                   <span className="text-gray-400 text-sm">{fmtDate(r.datumKraja)}</span>
                   <span className="text-gray-400 text-sm">{r.lokacija}</span>
-                  <span className="text-blue-400 text-sm font-semibold">€{r.cena}</span>
+                  <span className="text-blue-400 text-sm font-semibold">{format(r.cena)}</span>
                   <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium w-fit ${STATUS_CLS[r.displayStatus]}`}>
                     {STATUS_LABEL[r.displayStatus]}
                   </span>
@@ -169,7 +171,7 @@ export default function RezervacijePage() {
               { value: counts.aktivne, label: "Aktivne", numCls: "text-green-400", accentCls: "bg-green-500" },
               { value: counts.predstojece, label: "Predstojece", numCls: "text-yellow-400", accentCls: "bg-yellow-500" },
               { value: counts.zavrsene, label: "Zavrsene", numCls: "text-white", accentCls: "bg-white/20" },
-              { value: `€${counts.ukupno.toLocaleString("de-DE")}`, label: "Ukupno", numCls: "text-blue-400", accentCls: "bg-blue-500" },
+              { value: format(counts.ukupno), label: "Ukupno", numCls: "text-blue-400", accentCls: "bg-blue-500" },
             ].map(({ value, label, numCls, accentCls }) => (
               <div key={label} className="bg-[#111827] border border-white/10 rounded-xl p-5 flex gap-4 items-stretch">
                 <div className={`w-0.5 rounded-full shrink-0 ${accentCls}`} />

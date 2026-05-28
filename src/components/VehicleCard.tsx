@@ -1,30 +1,28 @@
 "use client";
 
-import { useState } from "react";
 import IVozilo from "@/interfaces/VoziloInterface";
 import Button from "@/components/Button";
 import { Star } from "lucide-react";
+import { useCurrency } from "@/context/CurrencyContext";
+import useCarImage from "@/hooks/useCarImage";
 
 interface VehicleCardProps {
   vozilo: IVozilo;
   dostupno?: boolean;
 }
 
-export default function VehicleCard({
-  vozilo,
-  dostupno = true,
-}: VehicleCardProps) {
-  const { osnovniPodaci, specifikacije, cena, ocena, slike } = vozilo;
-  const [imgError, setImgError] = useState(false);
+export default function VehicleCard({ vozilo, dostupno = true }: VehicleCardProps) {
+  const { osnovniPodaci, specifikacije, cena, ocena } = vozilo;
+  const { format } = useCurrency();
+  const image = useCarImage(osnovniPodaci.marka, osnovniPodaci.model, osnovniPodaci.godinaProizvodnje);
 
   return (
     <div className="bg-[#121721] rounded-xl overflow-hidden border border-white/10 flex flex-col">
       <div className="relative h-40 w-full bg-[#1a2035]">
-        {!imgError ? (
+        {image ? (
           <img
-            src={slike[0]}
+            src={image}
             alt={`${osnovniPodaci.marka} ${osnovniPodaci.model}`}
-            onError={() => setImgError(true)}
             className="w-full h-full object-cover"
           />
         ) : (
@@ -52,7 +50,7 @@ export default function VehicleCard({
             <p className="text-gray-500 text-xs mt-0.5">{specifikacije.tip}</p>
           </div>
           <div className="text-right shrink-0">
-            <span className="text-blue-400 font-bold text-sm">€{cena}</span>
+            <span className="text-blue-400 font-bold text-sm">{format(cena)}</span>
             <span className="text-gray-500 text-xs"> /dan</span>
           </div>
         </div>
@@ -65,9 +63,7 @@ export default function VehicleCard({
         </div>
         <Button
           className="flex items-center gap-1.5 px-3 py-1 text-xs justify-center"
-          onClick={() => {
-            window.location.href = `/vozila/${vozilo.id}`;
-          }}
+          onClick={() => { window.location.href = `/vozila/${vozilo.id}`; }}
         >
           Pogledaj
         </Button>

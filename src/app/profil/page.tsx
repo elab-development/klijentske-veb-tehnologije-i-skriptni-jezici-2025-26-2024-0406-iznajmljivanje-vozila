@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import korisnici from "@/models/korisnici";
 import useLocalStorage from "@/hooks/useLocalStorage";
 import { useReservation } from "@/context/ReservationContext";
+import { useCurrency } from "@/context/CurrencyContext";
 
 const inputCls =
   "w-full bg-[#0d1117] border border-white/10 text-white text-sm rounded-lg px-4 py-2.5 focus:outline-none focus:border-blue-500 placeholder:text-gray-600";
@@ -23,6 +24,7 @@ export default function ProfilPage() {
   const router = useRouter();
   const [userId] = useLocalStorage<number | null>("auth_userId", null);
   const { reservations } = useReservation();
+  const { format } = useCurrency();
   const [tab, setTab] = useState<Tab>("podaci");
   const [mounted, setMounted] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -179,7 +181,7 @@ export default function ProfilPage() {
                     { value: stats.ukupno, label: "Ukupno rezervovano", cls: "text-white" },
                     { value: stats.zavrsene, label: "Zavrsene", cls: "text-white" },
                     { value: stats.aktivne, label: "Aktivne", cls: "text-white" },
-                    { value: `€${stats.potroseno.toLocaleString("de-DE")}`, label: "Ukupno potroseno", cls: "text-blue-400" },
+                    { value: format(stats.potroseno), label: "Ukupno potroseno", cls: "text-blue-400" },
                   ].map(({ value, label, cls }, i, arr) => (
                     <div key={label}>
                       <div className="py-3">

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import ConditionalLayout from "@/components/ConditionalLayout";
 import { RezervacijaProvider } from "@/context/ReservationContext";
+import { CurrencyProvider } from "@/context/CurrencyContext";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -30,9 +31,11 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <RezervacijaProvider>
-          <ConditionalLayout>{children}</ConditionalLayout>
-        </RezervacijaProvider>
+        <CurrencyProvider>
+          <RezervacijaProvider>
+            <ConditionalLayout>{children}</ConditionalLayout>
+          </RezervacijaProvider>
+        </CurrencyProvider>
       </body>
     </html>
   );

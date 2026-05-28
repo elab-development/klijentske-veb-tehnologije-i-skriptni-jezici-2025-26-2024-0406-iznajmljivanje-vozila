@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { CircleUserRound, LogOut } from "lucide-react";
 import Button from "./Button";
+import CurrencySelector from "./CurrencySelector";
 import useLocalStorage from "@/hooks/useLocalStorage";
 
 const publicLinks = [
@@ -76,7 +77,9 @@ export default function Navbar() {
           })}
         </div>
 
-        <div className="ml-auto flex items-center gap-2">
+        <div className="ml-auto flex items-center gap-3">
+          <CurrencySelector />
+          <div className="flex items-center gap-2">
           {userId ? (
             <>
               <Link href="/profil" className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors">
@@ -101,6 +104,7 @@ export default function Navbar() {
               </Button>
             </>
           )}
+          </div>
         </div>
       </div>
     </nav>

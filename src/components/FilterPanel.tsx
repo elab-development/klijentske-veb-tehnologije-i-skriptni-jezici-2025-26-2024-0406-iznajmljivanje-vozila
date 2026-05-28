@@ -8,7 +8,7 @@ const MAX_CENA = Math.max(...vehicles.map((v) => v.cena));
 
 interface FilterPanelProps {
   maxCena: number;
-  tip: string;
+  tip: string | null;
   marke: string[];
   onMaxCena: (v: number) => void;
   onTip: (v: string) => void;

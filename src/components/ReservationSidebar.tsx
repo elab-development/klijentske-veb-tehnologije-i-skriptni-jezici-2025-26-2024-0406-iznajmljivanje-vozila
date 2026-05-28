@@ -6,6 +6,7 @@ import { Star } from "lucide-react";
 import IVozilo from "@/interfaces/VoziloInterface";
 import useLocalStorage from "@/hooks/useLocalStorage";
 import { useReservation } from "@/context/ReservationContext";
+import { useCurrency } from "@/context/CurrencyContext";
 
 const LOKACIJE = ["Beograd centar", "Novi Sad", "Niš", "Kragujevac", "Subotica"];
 const OSIGURANJE = 25;
@@ -26,6 +27,7 @@ export default function ReservationSidebar({ vozilo }: { vozilo: IVozilo }) {
   const router = useRouter();
   const { create } = useReservation();
   const [userId] = useLocalStorage<number | null>("auth_userId", null);
+  const { format } = useCurrency();
 
   const today = new Date();
   const plus5 = new Date(today);
@@ -81,7 +83,7 @@ export default function ReservationSidebar({ vozilo }: { vozilo: IVozilo }) {
         </div>
 
         <div className="flex items-baseline gap-1">
-          <span className="text-white font-bold text-2xl">€{vozilo.cena}</span>
+          <span className="text-white font-bold text-2xl">{format(vozilo.cena)}</span>
           <span className="text-gray-500 text-sm">/dan</span>
         </div>
 
@@ -128,16 +130,16 @@ export default function ReservationSidebar({ vozilo }: { vozilo: IVozilo }) {
         <div className="flex flex-col gap-1.5">
           <p className="text-gray-500 text-[10px] mb-0.5">Obračun cene:</p>
           <div className="flex justify-between text-xs">
-            <span className="text-gray-400">{dana} dana x €{vozilo.cena}</span>
-            <span className="text-white">€{osnovnaCena}</span>
+            <span className="text-gray-400">{dana} dana x {format(vozilo.cena)}</span>
+            <span className="text-white">{format(osnovnaCena)}</span>
           </div>
           <div className="flex justify-between text-xs">
             <span className="text-gray-400">Osiguranje</span>
-            <span className="text-white">€{OSIGURANJE}</span>
+            <span className="text-white">{format(OSIGURANJE)}</span>
           </div>
           <div className="flex justify-between text-xs font-semibold mt-1">
             <span className="text-white">Ukupno:</span>
-            <span className="text-blue-400">€{ukupno}</span>
+            <span className="text-blue-400">{format(ukupno)}</span>
           </div>
         </div>
 
