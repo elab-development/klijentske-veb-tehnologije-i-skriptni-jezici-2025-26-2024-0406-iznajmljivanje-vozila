@@ -18,7 +18,9 @@ export default function Footer() {
         {/* Brand */}
         <div className="flex-1">
           <p className="text-white font-semibold text-sm">RentACar</p>
-          <p className="text-gray-500 text-xs mt-0.5">© {new Date().getFullYear()} RentACar. Sva prava zadržana.</p>
+          <p className="text-gray-500 text-xs mt-0.5">
+            © {new Date().getFullYear()} RentACar. Sva prava zadržana.
+          </p>
         </div>
 
         {/* Nav links */}

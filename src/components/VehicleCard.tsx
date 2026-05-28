@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
 import IVozilo from "@/app/interfaces/VoziloInterface";
 import Button from "@/components/Button";
@@ -10,7 +9,10 @@ interface VehicleCardProps {
   dostupno?: boolean;
 }
 
-export default function VehicleCard({ vozilo, dostupno = true }: VehicleCardProps) {
+export default function VehicleCard({
+  vozilo,
+  dostupno = true,
+}: VehicleCardProps) {
   const { osnovniPodaci, specifikacije, cena, ocena, slike } = vozilo;
   const [imgError, setImgError] = useState(false);
 
@@ -64,13 +66,15 @@ export default function VehicleCard({ vozilo, dostupno = true }: VehicleCardProp
             <span className="text-yellow-400 text-xs">★</span>
             <span className="text-gray-300 text-xs">{ocena}</span>
           </div>
-        
         </div>
-            <Button className="flex items-center gap-1.5 px-3 py-1 text-xs justify-center" onClick={() => {
-              window.location.href = `/vozila/${vozilo.id}`;
-            }}>
-              Pogledaj
-            </Button>
+        <Button
+          className="flex items-center gap-1.5 px-3 py-1 text-xs justify-center"
+          onClick={() => {
+            window.location.href = `/vozila/${vozilo.id}`;
+          }}
+        >
+          Pogledaj
+        </Button>
       </div>
     </div>
   );

@@ -20,13 +20,28 @@ export default function Navbar() {
         <Link href="/" className="flex items-center gap-2 shrink-0">
           <span className="w-7 h-7 rounded-md bg-blue-600 flex items-center justify-center">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <rect x="1" y="4" width="12" height="7" rx="1.5" stroke="white" strokeWidth="1.4" />
-              <path d="M3.5 4V3a1.5 1.5 0 013 0v1" stroke="white" strokeWidth="1.4" strokeLinecap="round" />
+              <rect
+                x="1"
+                y="4"
+                width="12"
+                height="7"
+                rx="1.5"
+                stroke="white"
+                strokeWidth="1.4"
+              />
+              <path
+                d="M3.5 4V3a1.5 1.5 0 013 0v1"
+                stroke="white"
+                strokeWidth="1.4"
+                strokeLinecap="round"
+              />
               <circle cx="3.5" cy="10" r="1" fill="white" />
               <circle cx="10.5" cy="10" r="1" fill="white" />
             </svg>
           </span>
-          <span className="text-white font-semibold text-sm tracking-wide">RentACar</span>
+          <span className="text-white font-semibold text-sm tracking-wide">
+            RentACar
+          </span>
         </Link>
 
         {/* Nav links */}
@@ -52,15 +67,17 @@ export default function Navbar() {
 
         {/* Auth buttons */}
         <div className="ml-auto flex items-center gap-2">
-          <Button variant="ghost" className="hidden sm:inline-flex" onClick={() => window.location.href = "/prijava"}>
-
-          
+          <Button
+            variant="ghost"
+            className="hidden sm:inline-flex"
+            onClick={() => (window.location.href = "/prijava")}
+          >
             Prijava
           </Button>
           <Button
             variant="primary"
             className="hidden sm:inline-flex"
-            onClick={() => window.location.href = "/registracija"}
+            onClick={() => (window.location.href = "/registracija")}
           >
             Registracija
           </Button>

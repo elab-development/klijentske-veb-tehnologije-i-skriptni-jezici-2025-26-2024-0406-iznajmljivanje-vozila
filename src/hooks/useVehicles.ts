@@ -13,7 +13,7 @@ export function useVehicles() {
 
   const filtered = useMemo(
     () => filter.filterAndSort(vehicles, activeFilter),
-    [activeFilter]
+    [activeFilter],
   );
 
   const updateFilter = (partial: Partial<IFilter>) => {
@@ -25,11 +25,14 @@ export function useVehicles() {
   const getById = (id: number): IVozilo | undefined =>
     vehicles.find((v) => v.id === id);
 
-  const uniqueValues = useMemo(() => ({
-    vrste: [...new Set(vehicles.map((v) => v.osnovniPodaci.vrsta))],
-    tipovi: [...new Set(vehicles.map((v) => v.specifikacije.tip))],
-    marke: [...new Set(vehicles.map((v) => v.osnovniPodaci.marka))],
-  }), []);
+  const uniqueValues = useMemo(
+    () => ({
+      vrste: [...new Set(vehicles.map((v) => v.osnovniPodaci.vrsta))],
+      tipovi: [...new Set(vehicles.map((v) => v.specifikacije.tip))],
+      marke: [...new Set(vehicles.map((v) => v.osnovniPodaci.marka))],
+    }),
+    [],
+  );
 
   return {
     vehicles: filtered,

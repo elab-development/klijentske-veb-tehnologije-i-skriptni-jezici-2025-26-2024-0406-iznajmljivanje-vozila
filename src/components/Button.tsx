@@ -17,7 +17,8 @@ export default function Button({
   disabled = false,
   className = "",
 }: ButtonProps) {
-  const base = "inline-flex items-center gap-1.5 px-5 py-2 text-sm font-medium rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed hover:cursor-pointer";
+  const base =
+    "inline-flex items-center gap-1.5 px-5 py-2 text-sm font-medium rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed hover:cursor-pointer";
 
   const variants = {
     primary: "bg-blue-600 hover:bg-blue-500 text-white",

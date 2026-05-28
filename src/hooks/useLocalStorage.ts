@@ -16,8 +16,7 @@ export default function useLocalStorage<T>(key: string, initialValue: T) {
   useEffect(() => {
     try {
       window.localStorage.setItem(key, JSON.stringify(value));
-    } catch {
-    }
+    } catch {}
   }, [key, value]);
 
   const remove = () => {

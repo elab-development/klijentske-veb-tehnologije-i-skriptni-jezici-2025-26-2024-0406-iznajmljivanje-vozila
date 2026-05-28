@@ -9,17 +9,15 @@ import Funkcionalnosti from "@/components/Funkcionalnosti";
 export default function Home() {
   return (
     <main className="flex-1 bg-[#0a0d14]">
-
       <Hero />
-      
+
       <Istaknuta />
 
       <Statistike />
-      
+
       <Chart />
 
       <Funkcionalnosti />
-
     </main>
   );
 }

@@ -28,10 +28,14 @@ Tooltip.positioners.cursor = function (_elements, eventPosition) {
   return { x: eventPosition.x, y: eventPosition.y };
 };
 
-const chartVehicles = [...vehicles].sort((a, b) => b.brojOcena - a.brojOcena).slice(0, 5);
+const chartVehicles = [...vehicles]
+  .sort((a, b) => b.brojOcena - a.brojOcena)
+  .slice(0, 5);
 
 const data = {
-  labels: chartVehicles.map((v) => `${v.osnovniPodaci.marka} ${v.osnovniPodaci.model}`),
+  labels: chartVehicles.map(
+    (v) => `${v.osnovniPodaci.marka} ${v.osnovniPodaci.model}`,
+  ),
   datasets: [
     {
       data: chartVehicles.map((v) => v.brojOcena),
@@ -85,8 +89,12 @@ export default function Chart() {
     <section className="w-[85%] mx-auto py-10">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-white font-bold text-lg">Najpopularnija vozila</h2>
-          <p className="text-gray-500 text-xs mt-1">Rangirana po broju ocena korisnika</p>
+          <h2 className="text-white font-bold text-lg">
+            Najpopularnija vozila
+          </h2>
+          <p className="text-gray-500 text-xs mt-1">
+            Rangirana po broju ocena korisnika
+          </p>
         </div>
         <span className="text-gray-500 text-xs flex items-center gap-1">
           <Link size={12} /> Kliknite na bar za prikaz vozila
