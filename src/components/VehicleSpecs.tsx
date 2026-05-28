@@ -1,4 +1,4 @@
-import IVozilo from "@/app/interfaces/VoziloInterface";
+import IVozilo from "@/interfaces/VoziloInterface";
 
 function cap(s: string) {
   return s.charAt(0).toUpperCase() + s.slice(1);

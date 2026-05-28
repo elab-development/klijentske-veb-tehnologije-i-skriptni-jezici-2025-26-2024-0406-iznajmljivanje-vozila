@@ -3,7 +3,7 @@
 import { useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { Star } from "lucide-react";
-import IVozilo from "@/app/interfaces/VoziloInterface";
+import IVozilo from "@/interfaces/VoziloInterface";
 import useLocalStorage from "@/hooks/useLocalStorage";
 import { useReservation } from "@/context/ReservationContext";
 

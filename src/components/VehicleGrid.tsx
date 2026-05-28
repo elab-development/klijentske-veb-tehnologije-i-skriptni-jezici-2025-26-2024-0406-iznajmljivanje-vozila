@@ -1,4 +1,4 @@
-import IVozilo from "@/app/interfaces/VoziloInterface";
+import IVozilo from "@/interfaces/VoziloInterface";
 import VehicleCard from "@/components/VehicleCard";
 
 interface VehicleGridProps {

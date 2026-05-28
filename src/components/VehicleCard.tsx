@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import IVozilo from "@/app/interfaces/VoziloInterface";
+import IVozilo from "@/interfaces/VoziloInterface";
 import Button from "@/components/Button";
 import { Star } from "lucide-react";
 

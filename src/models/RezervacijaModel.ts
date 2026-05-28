@@ -1,6 +1,6 @@
 
-import IRezervacija from "../app/interfaces/RezervacijaInterface";
-import IFormaRezervacije from "../app/interfaces/FormaRezervacije";
+import IRezervacija from "../interfaces/RezervacijaInterface";
+import IFormaRezervacije from "../interfaces/FormaRezervacije";
 
 export class RezervacijaManager {
   private reservations: IRezervacija[] = [];

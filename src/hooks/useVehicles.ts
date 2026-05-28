@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import IVozilo from "@/app/interfaces/VoziloInterface";
-import IFilter from "@/app/interfaces/FilterInterface";
+import IVozilo from "@/interfaces/VoziloInterface";
+import IFilter from "@/interfaces/FilterInterface";
 import { VoziloFilter } from "@/models/VoziloModel";
 import vehicles from "@/models/data";
 

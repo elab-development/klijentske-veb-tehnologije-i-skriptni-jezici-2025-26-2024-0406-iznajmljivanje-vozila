@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useReservation } from "@/context/ReservationContext";
 import useLocalStorage from "@/hooks/useLocalStorage";
 import vehicles from "@/models/data";
-import IRezervacija from "@/app/interfaces/RezervacijaInterface";
+import IRezervacija from "@/interfaces/RezervacijaInterface";
 
 type TabFilter = "sve" | "aktivne" | "predstojece" | "zavrsene";
 type DisplayStatus = "aktivna" | "predstojeca" | "zavrsena" | "otkazana";
@@ -91,13 +91,11 @@ export default function RezervacijePage() {
     <main className="flex-1 bg-[#0a0d14]">
       <div className="w-[85%] mx-auto py-10">
 
-        {/* Heading */}
         <div className="mb-8">
           <h1 className="text-white font-bold text-2xl">Moje rezervacije</h1>
           <p className="text-gray-500 text-sm mt-1">Pregled svih vasih rezervacija</p>
         </div>
 
-        {/* Tabs */}
         <div className="flex gap-2 mb-5">
           {tabs.map((t) => (
             <button
@@ -114,16 +112,13 @@ export default function RezervacijePage() {
           ))}
         </div>
 
-        {/* Table */}
         <div className="bg-[#111827] border border-white/10 rounded-xl overflow-hidden mb-8">
-          {/* Header */}
           <div className="grid grid-cols-[2fr_1.5fr_1.5fr_1.5fr_1fr_1.5fr_6rem] px-6 py-3 border-b border-white/10">
             {["Vozilo", "Preuzimanje", "Vracanje", "Lokacija", "Cena", "Status", ""].map((col, i) => (
               <span key={i} className="text-gray-500 text-xs font-medium">{col}</span>
             ))}
           </div>
 
-          {/* Rows */}
           {filtered.length === 0 ? (
             <div className="px-6 py-12 text-center text-gray-500 text-sm">
               Nema rezervacija za prikaz.
@@ -167,7 +162,6 @@ export default function RezervacijePage() {
           )}
         </div>
 
-        {/* Pregled */}
         <div className="mb-8">
           <h2 className="text-white font-semibold text-base mb-4">Pregled</h2>
           <div className="grid grid-cols-4 gap-4">
@@ -188,7 +182,6 @@ export default function RezervacijePage() {
           </div>
         </div>
 
-        {/* Nova rezervacija */}
         <button
           onClick={() => router.push("/vozila")}
           className="bg-blue-600 hover:bg-blue-500 text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition-colors cursor-pointer"

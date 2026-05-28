@@ -18,11 +18,13 @@ export default function VozilaPage() {
     const v = Number(params.get("maxCena"));
     return v > 0 ? v : MAX_CENA;
   });
-  const [tip, setTip] = useState(() => params.get("tip") ?? "Svi");
+  const [tip, setTip] = useState(() => (( params.get("tip") && params.get("tip") !== "" ) ? params.get("tip") : "Svi"));
   const [marke, setMarke] = useState<string[]>(() => params.getAll("marka"));
   const [query, setQuery] = useState(() => params.get("q") ?? "");
   const [sort, setSort] = useState(() => params.get("sort") ?? "");
   const [page, setPage] = useState(1);
+
+  console.log({ maxCena, tip, marke, query, sort });
 
   const handleMarka = (marka: string, checked: boolean) => {
     setMarke((prev) =>
@@ -50,7 +52,7 @@ export default function VozilaPage() {
     if (sort === "cena-desc") list = [...list].sort((a, b) => b.cena - a.cena);
     if (sort === "ocena-desc")
       list = [...list].sort((a, b) => b.ocena - a.ocena);
-    if (sort === "godina-desc")
+    if (sort === "godina-desc")``
       list = [...list].sort(
         (a, b) =>
           b.osnovniPodaci.godinaProizvodnje - a.osnovniPodaci.godinaProizvodnje,

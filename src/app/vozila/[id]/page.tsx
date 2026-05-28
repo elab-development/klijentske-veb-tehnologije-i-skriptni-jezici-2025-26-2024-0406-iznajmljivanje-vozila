@@ -26,7 +26,6 @@ export default function VoziloDetailPage() {
     <main className="flex-1 bg-[#0a0d14]">
       <div className="w-[85%] mx-auto py-8">
 
-        {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-xs text-gray-500 mb-6">
           <Link href="/" className="hover:text-white transition-colors">Početna</Link>
           <span>/</span>
@@ -37,14 +36,12 @@ export default function VoziloDetailPage() {
 
         <div className="flex gap-8 items-start">
 
-          {/* LEFT */}
           <div className="flex-1 flex flex-col gap-6">
             <ImageGallery slike={vozilo.slike} marka={op.marka} model={op.model} />
             <VehicleSpecs vozilo={vozilo} />
             <Reviews />
           </div>
 
-          {/* RIGHT */}
           <ReservationSidebar vozilo={vozilo} />
 
         </div>

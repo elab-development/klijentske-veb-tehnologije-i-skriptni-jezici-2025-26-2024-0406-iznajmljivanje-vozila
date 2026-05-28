@@ -1,6 +1,6 @@
 "use client";
 
-import IRezervacija from "@/app/interfaces/RezervacijaInterface";
+import IRezervacija from "@/interfaces/RezervacijaInterface";
 import useLocalStorage from "./useLocalStorage";
 
 export function useUserReservations(userId: number | null) {

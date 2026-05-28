@@ -1,8 +1,8 @@
 "use client";
 
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
-import IRezervacija from "@/app/interfaces/RezervacijaInterface";
-import IFormaRezervacije from "@/app/interfaces/FormaRezervacije";
+import IRezervacija from "@/interfaces/RezervacijaInterface";
+import IFormaRezervacije from "@/interfaces/FormaRezervacije";
 import { RezervacijaManager } from "@/models/RezervacijaModel";
 
 interface RezervacijaContextType {

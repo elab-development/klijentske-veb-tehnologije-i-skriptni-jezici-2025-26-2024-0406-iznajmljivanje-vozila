@@ -1,4 +1,4 @@
-import IKorisnik from "@/app/interfaces/KorisnikInterface";
+import IKorisnik from "@/interfaces/KorisnikInterface";
 
 const korisnici: IKorisnik[] = [
   {

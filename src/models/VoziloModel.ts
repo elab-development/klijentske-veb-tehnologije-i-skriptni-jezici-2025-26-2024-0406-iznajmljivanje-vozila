@@ -1,5 +1,5 @@
-import IVozilo from "@/app/interfaces/VoziloInterface";
-import IFilter from "@/app/interfaces/FilterInterface";
+import IVozilo from "@/interfaces/VoziloInterface";
+import IFilter from "@/interfaces/FilterInterface";
 
 
 export class VoziloFilter {
