@@ -17,4 +17,6 @@ export default interface IVozilo {
   };
   cena: number;
   ocena: number;
+  brojOcena: number;
+    slike: string[];
 }
