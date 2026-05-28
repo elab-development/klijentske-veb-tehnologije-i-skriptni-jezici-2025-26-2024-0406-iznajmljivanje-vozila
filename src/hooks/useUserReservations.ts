@@ -12,17 +12,15 @@ export function useUserReservations(userId: number | null) {
   >(storageKey, []);
 
   const addReservation = (r: IRezervacija) => {
-    setReservations((prev) => [...prev, r]);
+    setReservations([...reservations, r]);
   };
 
   const updateReservation = (id: number, status: IRezervacija["status"]) => {
-    setReservations((prev) =>
-      prev.map((r) => (r.id === id ? { ...r, status } : r)),
-    );
+    setReservations(reservations.map((r) => (r.id === id ? { ...r, status } : r)));
   };
 
   const removeReservation = (id: number) => {
-    setReservations((prev) => prev.filter((r) => r.id !== id));
+    setReservations(reservations.filter((r) => r.id !== id));
   };
 
   return {

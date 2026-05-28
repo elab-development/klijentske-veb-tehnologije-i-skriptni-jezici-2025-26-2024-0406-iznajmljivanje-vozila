@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import vehicles from "@/models/data";
 import FilterPanel from "@/components/FilterPanel";
@@ -12,6 +12,14 @@ const PER_PAGE = 9;
 const MAX_CENA = Math.max(...vehicles.map((v) => v.cena));
 
 export default function VozilaPage() {
+  return (
+    <Suspense>
+      <VozilaContent />
+    </Suspense>
+  );
+}
+
+function VozilaContent() {
   const params = useSearchParams();
 
   const [maxCena, setMaxCena] = useState(() => {
