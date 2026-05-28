@@ -48,6 +48,11 @@ export class RezervacijaManager {
     return [...this.reservations];
   }
 
+  restore(r: IRezervacija): void {
+    this.reservations.push(r);
+    if (r.id >= this.nextId) this.nextId = r.id + 1;
+  }
+
   isVehicleAvailable(voziloId: number, datumPocetka: Date, datumKraja: Date): boolean {
     return !this.reservations.some(
       (r) =>

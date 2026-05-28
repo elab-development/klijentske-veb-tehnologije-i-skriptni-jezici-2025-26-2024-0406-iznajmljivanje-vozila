@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import IRezervacija from "@/app/interfaces/RezervacijaInterface";
 import IFormaRezervacije from "@/app/interfaces/FormaRezervacije";
 import { RezervacijaManager } from "@/models/RezervacijaModel";
@@ -17,12 +17,49 @@ interface RezervacijaContextType {
 
 const RezervacijaContext = createContext<RezervacijaContextType | null>(null);
 
-const manager = new RezervacijaManager();
+const STORAGE_KEY = "rezervacije";
+
+function persist(data: IRezervacija[]) {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  } catch {}
+}
+
+function load(): IRezervacija[] {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw) as (Omit<IRezervacija, "datumPocetka" | "datumKraja"> & {
+      datumPocetka: string;
+      datumKraja: string;
+    })[];
+    return parsed.map((r) => ({
+      ...r,
+      datumPocetka: new Date(r.datumPocetka),
+      datumKraja: new Date(r.datumKraja),
+    }));
+  } catch {
+    return [];
+  }
+}
 
 export function RezervacijaProvider({ children }: { children: ReactNode }) {
+  const [manager] = useState(() => new RezervacijaManager());
   const [reservations, setReservations] = useState<IRezervacija[]>([]);
 
-  const refresh = () => setReservations(manager.getAll());
+  // Restore from localStorage on mount
+  useEffect(() => {
+    const saved = load();
+    saved.forEach((r) => manager.restore(r));
+    setReservations(manager.getAll());
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const refresh = () => {
+    const all = manager.getAll();
+    setReservations(all);
+    persist(all);
+  };
 
   const create = (form: IFormaRezervacije, cenaPoDanu: number): IRezervacija => {
     const r = manager.create(form, cenaPoDanu);

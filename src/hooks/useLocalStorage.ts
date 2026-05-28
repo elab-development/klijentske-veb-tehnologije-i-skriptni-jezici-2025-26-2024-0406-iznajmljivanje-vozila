@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 export default function useLocalStorage<T>(key: string, initialValue: T) {
   const [value, setValue] = useState<T>(initialValue);
 
+  // Read from localStorage once after mount
   useEffect(() => {
     try {
       const item = window.localStorage.getItem(key);
@@ -13,16 +14,21 @@ export default function useLocalStorage<T>(key: string, initialValue: T) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [key]);
 
-  useEffect(() => {
+  // Write immediately in the setter — no effect needed
+  const set = useCallback((newValue: T) => {
+    setValue(newValue);
     try {
-      window.localStorage.setItem(key, JSON.stringify(value));
+      window.localStorage.setItem(key, JSON.stringify(newValue));
     } catch {}
-  }, [key, value]);
+  }, [key]);
 
-  const remove = () => {
-    window.localStorage.removeItem(key);
+  const remove = useCallback(() => {
+    try {
+      window.localStorage.removeItem(key);
+    } catch {}
     setValue(initialValue);
-  };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [key]);
 
-  return [value, setValue, remove] as const;
+  return [value, set, remove] as const;
 }
