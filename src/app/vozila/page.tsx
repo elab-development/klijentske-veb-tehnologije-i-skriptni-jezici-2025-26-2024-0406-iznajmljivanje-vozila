@@ -58,7 +58,6 @@ export default function VozilaPage() {
   return (
     <main className="flex-1 bg-[#0a0d14]">
       <div className="w-[85%] mx-auto py-10">
-        {/* Header */}
         <div className="mb-8">
           <h1 className="text-white font-bold text-2xl">Dostupna vozila</h1>
           <p className="text-gray-500 text-sm mt-1">
@@ -67,7 +66,6 @@ export default function VozilaPage() {
         </div>
 
         <div className="flex gap-8 items-start">
-          {/* Sidebar */}
           <FilterPanel
             maxCena={maxCena}
             tip={tip}
@@ -83,7 +81,6 @@ export default function VozilaPage() {
             onMarka={handleMarka}
           />
 
-          {/* Content */}
           <div className="flex-1 flex flex-col gap-5">
             <SearchBar
               query={query}

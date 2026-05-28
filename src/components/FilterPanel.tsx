@@ -27,7 +27,6 @@ export default function FilterPanel({
     <aside className="w-56 shrink-0 flex flex-col gap-6">
       <h2 className="text-white font-semibold text-sm">Filteri</h2>
 
-      {/* Cena */}
       <div>
         <div className="flex justify-between mb-2">
           <span className="text-gray-400 text-xs">Cena po danu</span>
@@ -47,7 +46,6 @@ export default function FilterPanel({
         </div>
       </div>
 
-      {/* Tip vozila */}
       <div>
         <p className="text-gray-400 text-xs mb-2">Tip vozila</p>
         <div className="flex flex-wrap gap-1.5">
@@ -67,7 +65,6 @@ export default function FilterPanel({
         </div>
       </div>
 
-      {/* Marka */}
       <div>
         <p className="text-gray-400 text-xs mb-2">Marka</p>
         <div className="flex flex-col gap-2">

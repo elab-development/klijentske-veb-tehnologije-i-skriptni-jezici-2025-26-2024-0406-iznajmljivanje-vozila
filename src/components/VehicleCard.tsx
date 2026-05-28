@@ -3,6 +3,7 @@
 import { useState } from "react";
 import IVozilo from "@/app/interfaces/VoziloInterface";
 import Button from "@/components/Button";
+import { Star } from "lucide-react";
 
 interface VehicleCardProps {
   vozilo: IVozilo;
@@ -18,7 +19,6 @@ export default function VehicleCard({
 
   return (
     <div className="bg-[#121721] rounded-xl overflow-hidden border border-white/10 flex flex-col">
-      {/* Image */}
       <div className="relative h-40 w-full bg-[#1a2035]">
         {!imgError ? (
           <img
@@ -32,7 +32,6 @@ export default function VehicleCard({
             {osnovniPodaci.marka} {osnovniPodaci.model}
           </div>
         )}
-        {/* Badge */}
         <span
           className={`absolute top-2 left-2 text-xs font-medium px-2 py-0.5 rounded-full ${
             dostupno
@@ -44,9 +43,7 @@ export default function VehicleCard({
         </span>
       </div>
 
-      {/* Body */}
       <div className="p-3 flex flex-col gap-2 flex-1">
-        {/* Name + price */}
         <div className="flex items-start justify-between gap-2">
           <div>
             <h3 className="text-white font-semibold text-sm leading-tight">
@@ -60,10 +57,9 @@ export default function VehicleCard({
           </div>
         </div>
 
-        {/* Rating + button */}
         <div className="flex items-center justify-between mt-auto pt-1">
           <div className="flex items-center gap-1">
-            <span className="text-yellow-400 text-xs">★</span>
+            <Star size={14} fill="currentColor" className="text-yellow-400" />
             <span className="text-gray-300 text-xs">{ocena}</span>
           </div>
         </div>

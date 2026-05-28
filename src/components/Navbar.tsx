@@ -1,22 +1,34 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { CircleUserRound, LogOut } from "lucide-react";
 import Button from "./Button";
+import useLocalStorage from "@/hooks/useLocalStorage";
 
-const navLinks = [
+const publicLinks = [
   { href: "/", label: "Početna" },
   { href: "/vozila", label: "Vozila" },
+];
+const authLinks = [
   { href: "/rezervacije", label: "Rezervacije" },
 ];
 
 export default function Navbar() {
   const pathname = usePathname();
+  const router = useRouter();
+  const [userId, , removeUserId]     = useLocalStorage<number | null>("auth_userId", null);
+  const [username, , removeUsername] = useLocalStorage<string | null>("auth_username", null);
+
+  const logout = () => {
+    removeUserId();
+    removeUsername();
+    router.push("/");
+  };
 
   return (
     <nav className="w-full bg-[#121721] border-b border-white/10">
       <div className="max-w-7xl mx-auto px-6 h-14 flex items-center gap-10">
-        {/* Logo */}
         <Link href="/" className="flex items-center gap-2 shrink-0">
           <span className="w-7 h-7 rounded-md bg-blue-600 flex items-center justify-center">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -44,9 +56,8 @@ export default function Navbar() {
           </span>
         </Link>
 
-        {/* Nav links */}
         <div className="flex items-center gap-1">
-          {navLinks.map(({ href, label }) => {
+          {[...publicLinks, ...(userId ? authLinks : [])].map(({ href, label }) => {
             const active = pathname === href;
             return (
               <Link
@@ -65,22 +76,31 @@ export default function Navbar() {
           })}
         </div>
 
-        {/* Auth buttons */}
         <div className="ml-auto flex items-center gap-2">
-          <Button
-            variant="ghost"
-            className="hidden sm:inline-flex"
-            onClick={() => (window.location.href = "/prijava")}
-          >
-            Prijava
-          </Button>
-          <Button
-            variant="primary"
-            className="hidden sm:inline-flex"
-            onClick={() => (window.location.href = "/registracija")}
-          >
-            Registracija
-          </Button>
+          {userId ? (
+            <>
+              <Link href="/profil" className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors">
+                <CircleUserRound size={20} />
+                <span className="text-sm hidden sm:block">{username}</span>
+              </Link>
+              <button
+                onClick={logout}
+                className="ml-2 text-gray-500 hover:text-red-400 transition-colors cursor-pointer"
+                title="Odjavi se"
+              >
+                <LogOut size={16} />
+              </button>
+            </>
+          ) : (
+            <>
+              <Button variant="ghost" className="hidden sm:inline-flex" onClick={() => router.push("/prijava")}>
+                Prijava
+              </Button>
+              <Button variant="primary" className="hidden sm:inline-flex" onClick={() => router.push("/registracija")}>
+                Registracija
+              </Button>
+            </>
+          )}
         </div>
       </div>
     </nav>

@@ -46,7 +46,6 @@ export default function Hero() {
         </div>
 
         <div className="mt-10 bg-[#0d1117] rounded-xl flex items-stretch divide-x divide-white/10">
-          {/* Lokacija */}
           <label className="flex-1 flex flex-col px-5 py-4 cursor-pointer hover:bg-white/5 transition-colors rounded-l-xl">
             <span className="text-gray-500 text-[10px] uppercase tracking-wider mb-1">
               Lokacija preuzimanja
@@ -64,7 +63,6 @@ export default function Hero() {
             </select>
           </label>
 
-          {/* Datum od */}
           <div className="flex-1 flex flex-col px-5 py-4 hover:bg-white/5 transition-colors">
             <span className="text-gray-500 text-[10px] uppercase tracking-wider mb-1">
               Datum preuzimanja
@@ -77,7 +75,6 @@ export default function Hero() {
             />
           </div>
 
-          {/* Datum do */}
           <div className="flex-1 flex flex-col px-5 py-4 hover:bg-white/5 transition-colors">
             <span className="text-gray-500 text-[10px] uppercase tracking-wider mb-1">
               Datum vracanja
@@ -90,7 +87,6 @@ export default function Hero() {
             />
           </div>
 
-          {/* Tip vozila */}
           <label className="flex-1 flex flex-col px-5 py-4 cursor-pointer hover:bg-white/5 transition-colors">
             <span className="text-gray-500 text-[10px] uppercase tracking-wider mb-1">
               Tip vozila
@@ -108,7 +104,6 @@ export default function Hero() {
             </select>
           </label>
 
-          {/* OK */}
           <div className="flex items-center px-4">
             <Button
               onClick={() =>
