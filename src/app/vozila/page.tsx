@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import { useSearchParams } from "next/navigation";
 import vehicles from "@/models/data";
 import FilterPanel from "@/components/FilterPanel";
 import SearchBar from "@/components/SearchBar";
@@ -11,11 +12,16 @@ const PER_PAGE = 9;
 const MAX_CENA = Math.max(...vehicles.map((v) => v.cena));
 
 export default function VozilaPage() {
-  const [maxCena, setMaxCena] = useState(MAX_CENA);
-  const [tip, setTip] = useState("Svi");
-  const [marke, setMarke] = useState<string[]>([]);
-  const [query, setQuery] = useState("");
-  const [sort, setSort] = useState("");
+  const params = useSearchParams();
+
+  const [maxCena, setMaxCena] = useState(() => {
+    const v = Number(params.get("maxCena"));
+    return v > 0 ? v : MAX_CENA;
+  });
+  const [tip, setTip] = useState(() => params.get("tip") ?? "Svi");
+  const [marke, setMarke] = useState<string[]>(() => params.getAll("marka"));
+  const [query, setQuery] = useState(() => params.get("q") ?? "");
+  const [sort, setSort] = useState(() => params.get("sort") ?? "");
   const [page, setPage] = useState(1);
 
   const handleMarka = (marka: string, checked: boolean) => {
