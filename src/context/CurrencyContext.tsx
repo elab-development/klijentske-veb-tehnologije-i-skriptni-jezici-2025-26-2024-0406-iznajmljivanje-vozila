@@ -1,6 +1,13 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect, useCallback, ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useCallback,
+  ReactNode,
+} from "react";
 
 export type Currency = "EUR" | "USD" | "CHF" | "RSD";
 
@@ -36,23 +43,28 @@ export function CurrencyProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     fetch("https://api.frankfurter.app/latest?from=EUR&to=USD,CHF,RSD")
-      .then((r) => r.json())
+      .then((r) => {
+        if (!r.ok) throw new Error("API error");
+        return r.json();
+      })
       .then((data) => {
-        setRates({ EUR: 1, ...data.rates });
+        const { USD, CHF, RSD } = data?.rates ?? {};
+        if (!USD || !CHF || !RSD) throw new Error("Missing rates");
+        setRates({ EUR: 1, USD, CHF, RSD });
       })
-      .catch(() => {
-        setRates(FALLBACK_RATES);
-      })
+      .catch(() => setRates(FALLBACK_RATES))
       .finally(() => setLoading(false));
   }, []);
 
   const format = useCallback(
     (eurAmount: number) => formatAmount(eurAmount * rates[currency], currency),
-    [currency, rates]
+    [currency, rates],
   );
 
   return (
-    <CurrencyContext.Provider value={{ currency, setCurrency, format, loading }}>
+    <CurrencyContext.Provider
+      value={{ currency, setCurrency, format, loading }}
+    >
       {children}
     </CurrencyContext.Provider>
   );

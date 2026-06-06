@@ -37,6 +37,7 @@ export default function ReservationSidebar({ vozilo }: { vozilo: IVozilo }) {
   const [datumPocetka, setDatumPocetka] = useState(toDateInput(today));
   const [datumKraja, setDatumKraja] = useState(toDateInput(plus5));
 
+  
   const dana = useMemo(() => {
     const start = parseDateInput(datumPocetka);
     const end = parseDateInput(datumKraja);
@@ -53,6 +54,12 @@ export default function ReservationSidebar({ vozilo }: { vozilo: IVozilo }) {
       router.push("/prijava");
       return;
     }
+
+    if (parseDateInput(datumKraja) <= parseDateInput(datumPocetka)) {
+      alert("Datum kraja mora biti nakon datuma početka");                                                                                 
+    return;                                                                                                                                 
+    } 
+    
     create(
       {
         voziloId: vozilo.id,

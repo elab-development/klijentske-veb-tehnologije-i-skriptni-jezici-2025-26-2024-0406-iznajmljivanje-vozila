@@ -47,7 +47,6 @@ export function RezervacijaProvider({ children }: { children: ReactNode }) {
   const [manager] = useState(() => new RezervacijaManager());
   const [reservations, setReservations] = useState<IRezervacija[]>([]);
 
-  // Restore from localStorage on mount
   useEffect(() => {
     const saved = load();
     saved.forEach((r) => manager.restore(r));

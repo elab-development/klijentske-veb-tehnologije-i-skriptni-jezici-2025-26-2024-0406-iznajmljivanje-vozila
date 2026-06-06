@@ -1,7 +1,6 @@
 import IVozilo from "@/interfaces/VoziloInterface";
 import IFilter from "@/interfaces/FilterInterface";
 
-
 export class VoziloFilter {
   filter(vehicles: IVozilo[], filter: IFilter): IVozilo[] {
     return vehicles.filter((v) => {

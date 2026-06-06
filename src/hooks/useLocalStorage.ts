@@ -5,7 +5,6 @@ import { useState, useEffect, useCallback } from "react";
 export default function useLocalStorage<T>(key: string, initialValue: T) {
   const [value, setValue] = useState<T>(initialValue);
 
-  // Read from localStorage once after mount
   useEffect(() => {
     try {
       const item = window.localStorage.getItem(key);
@@ -14,7 +13,6 @@ export default function useLocalStorage<T>(key: string, initialValue: T) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [key]);
 
-  // Write immediately in the setter — no effect needed
   const set = useCallback((newValue: T) => {
     setValue(newValue);
     try {

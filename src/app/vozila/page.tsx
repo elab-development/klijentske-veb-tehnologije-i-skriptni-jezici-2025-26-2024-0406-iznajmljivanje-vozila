@@ -60,7 +60,7 @@ function VozilaContent() {
     if (sort === "cena-desc") list = [...list].sort((a, b) => b.cena - a.cena);
     if (sort === "ocena-desc")
       list = [...list].sort((a, b) => b.ocena - a.ocena);
-    if (sort === "godina-desc")``
+    if (sort === "godina-desc")
       list = [...list].sort(
         (a, b) =>
           b.osnovniPodaci.godinaProizvodnje - a.osnovniPodaci.godinaProizvodnje,
