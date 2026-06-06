@@ -25,7 +25,7 @@ export default function ImageGallery({ marka, model, godina }: ImageGalleryProps
   return (
     <div className="flex flex-col gap-3">
       <div className="rounded-xl overflow-hidden bg-[#111827]">
-        <img src={mainSrc} alt={`${marka} ${model}`} className="w-full h-64 object-cover" />
+        <img src={mainSrc} alt={`${marka} ${model}`} className="w-full h-96 object-cover" />
       </div>
 
       {images.length > 1 && (
